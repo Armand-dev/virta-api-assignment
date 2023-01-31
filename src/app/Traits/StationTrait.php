@@ -71,6 +71,12 @@ trait StationTrait
                                             ) AS distance
                                             ")
                         ])
+                        ->groupBy(
+                            'id',
+                            'name',
+                            'company_id',
+                            'created_at',
+                            'distance')
                         ->having('distance', '<=', $distance)
                         ->orderBy('distance', 'ASC')
                         ->get();

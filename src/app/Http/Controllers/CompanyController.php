@@ -62,7 +62,7 @@ class CompanyController extends Controller
     {
         Company::validate();
 
-        $company->update(request()->only('name', 'parent_company_id'));
+        $company->update(request()->only('name', 'parent_id'));
 
         return response()->json($company, 201);
     }

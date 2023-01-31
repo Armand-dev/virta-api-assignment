@@ -22,7 +22,7 @@ Route::middleware([])->group(function(){
     Route::apiResource('/companies', CompanyController::class);
     Route::apiResource('/stations', StationController::class);
 
-    Route::get('getStationsInArea', [StationController::class, 'getStationsInArea'])->name('get-station-in-area');
+    Route::post('getStationsInArea', [StationController::class, 'getStationsInArea'])->name('get-station-in-area');
 });
 
 Route::get('test', function (){

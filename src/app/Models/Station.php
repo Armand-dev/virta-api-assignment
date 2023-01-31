@@ -2,18 +2,22 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Station extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, BelongsToCompany;
 
     protected $guarded = [
         'id'
     ];
 
+    /**
+     * @return void
+     */
     public static function validate(): void
     {
         request()->validate([
@@ -27,19 +31,11 @@ class Station extends Model
         ]);
     }
 
+    /**
+     * @return static
+     */
     public static function store(): self
     {
         return self::create(request()->only('name', 'latitude', 'longitude', 'company_id', 'address'));
     }
-
-    /**
-     * BEGIN: Relationships
-     */
-    public function company()
-    {
-        return $this->belongsTo(Company::class);
-    }
-    /**
-     * END: Relationships
-     */
 }

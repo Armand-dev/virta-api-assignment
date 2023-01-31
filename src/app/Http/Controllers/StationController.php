@@ -65,7 +65,7 @@ class StationController extends Controller
     {
         Station::validate();
 
-        $station->update(request()->only('name', 'parent_company_id'));
+        $station->update(request()->only('name', 'company_id', 'latitude', 'longitude', 'address'));
 
         return response()->json($station, 201);
     }
